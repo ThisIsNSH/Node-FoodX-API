@@ -1,7 +1,6 @@
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://test:test123!@ds115753.mlab.com:15753/foodxdb',{useNewUrlParser: true})
 
 var foodSchema = new mongoose.Schema({
 	food_name: String,
