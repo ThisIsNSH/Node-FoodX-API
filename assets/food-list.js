@@ -25,4 +25,27 @@ $(document).ready(function(){
       return false;
 
   });
+
+
+  $('#user').on('submit', function(){
+
+        var name = $('#name');
+        var address = $('#address');
+        var mobile = $('#mobile');
+        
+        var user =  {name: name.val(), address: address.val(), mobile: mobile.val()};
+
+        $.ajax({
+          type: 'POST',
+          url: '/hotel',
+          data: hotel,
+          success: function(data){
+            location.reload();
+          }
+        });
+
+        return false;
+
+    });  
+
 });

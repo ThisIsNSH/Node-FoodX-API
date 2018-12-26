@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ThisIsNSH/FoodX-APIs#readme",
   "dependencies": {
+    "async-each-series": "^1.1.0",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
