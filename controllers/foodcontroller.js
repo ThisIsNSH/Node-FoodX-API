@@ -2,6 +2,8 @@ var bodyParser = require('body-parser').json();
 var mongoose = require('mongoose');
 var each = require('async-each-series');
 
+mongoose.connect('mongodb://test:test123!@ds115753.mlab.com:15753/foodxdb',{useNewUrlParser: true})
+
 var foodSchema = new mongoose.Schema({
 	food_name: String,
 	food_price: String,
@@ -46,63 +48,9 @@ var Hotel = mongoose.model('Hotel',hotelSchema);
 
 module.exports = function(app){
 
-
-// 	[
-// 	{
-// 		"address": "address1",
-// 		"name": "name1",
-// 		"mobile":"mobile1",
-// 		"hotel_id":"5c23bc74394a05067a43302b",
-// 		"items":[
-// 				{
-// 					"name":"item name 1",
-// 					"quantity":"2",
-// 					"extra":"none"
-// 				},
-// 				{
-// 					"name":"item name 2",
-// 					"quantity":"2",
-// 					"extra":"none"
-// 				},
-// 				{
-// 					"name":"item name 3",
-// 					"quantity":"2",
-// 					"extra":"none"
-// 				}
-// 			]
-// 	},
-// 	{
-// 		"address": "address1",
-// 		"name": "name1",
-// 		"mobile":"mobile1",
-// 		"hotel_id":"5c23bc7f394a05067a43302f",
-// 		"items":[
-// 				{
-// 					"name":"item name 7",
-// 					"quantity":"2",
-// 					"extra":"none"
-// 				},
-// 				{
-// 					"name":"item name 8",
-// 					"quantity":"2",
-// 					"extra":"none"
-// 				},
-// 				{
-// 					"name":"item name 9",
-// 					"quantity":"2",
-// 					"extra":"none"
-// 				}
-// 			]
-// 	}
-// ]
-
 	app.post('/order',bodyParser,function(req,res){
-		
 		var request = req.body;
 		var da = [];
-
-
-
 		each(request, function(el, next) {
 			
 		  var obj = MidOrder(el);
@@ -114,28 +62,10 @@ module.exports = function(app){
 					next();
 				});
 			});
-
-
-		
-
 		}, function (err) {
 				res.json(da);
 		  console.log('finished');
 		});
-
-
-		// for(var i = 0; i < request.length; i++) {
-  //  		    var obj = MidOrder(request[i]);
-		// 	Hotel.findOne({_id: obj.hotel_id}).then(function(result){
-		// 		var arr = result.order;
-		// 		arr.push(MidOrder(obj));
-		// 		Hotel.findOneAndUpdate({_id: obj.hotel_id},{$set:{order:arr}}, {new: true}).then(function(data){
-		// 			da.push(data);
-		// 		});
-		// 	});
-		// 	if (i==request.length-1)
-		// 		res.json(da);
-		// }
 	});
 
 	app.get('/',function(req,res){
@@ -157,6 +87,13 @@ module.exports = function(app){
 		console.log(req.params.id);
 		Hotel.findOne({_id: req.params.id}).then(function(data){
 			res.json(data.menu);
+		});
+	});
+
+	app.get('/hotel/order/:id',function(req,res){
+		console.log(req.params.id);
+		Hotel.findOne({_id: req.params.id}).then(function(data){
+			res.json(data.order);
 		});
 	});
 
