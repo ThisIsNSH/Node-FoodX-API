@@ -2,7 +2,6 @@ var bodyParser = require('body-parser').json();
 var mongoose = require('mongoose');
 var each = require('async-each-series');
 
-mongoose.connect('mongodb://test:test123!@ds115753.mlab.com:15753/foodxdb',{useNewUrlParser: true})
 
 var foodSchema = new mongoose.Schema({
 	food_name: String,
@@ -21,14 +20,11 @@ var midOrderSchema = new mongoose.Schema({
 	name: String,
 	mobile: String,
 	hotel_id: String,
+	status: {
+	    type: String,
+	    default: "TBD"
+	},
 	items: [itemSchema]
-});
-
-var orderSchema = new mongoose.Schema({
-	order: [itemSchema],
-	address: String,
-	name: String,
-	mobile: String
 });
 
 var hotelSchema = new mongoose.Schema({
@@ -42,17 +38,40 @@ var hotelSchema = new mongoose.Schema({
 
 var Item = mongoose.model('Item',itemSchema);
 var MidOrder = mongoose.model('MidOrder',midOrderSchema);
-var Order = mongoose.model('Order',orderSchema);
 var Food = mongoose.model('Food',foodSchema);
 var Hotel = mongoose.model('Hotel',hotelSchema);
 
 module.exports = function(app){
 
+	//post order status
+	app.post('/status',bodyParser,function(req,res){
+		Hotel.update({'order._id': req.body.order_id},{$set: {'order.$.status': req.body.status}},function(err, count) { 
+			Hotel.findOne({_id: req.body.hotel_id}).then(function(data){
+				console.log(data.order);
+				res.render('order',{orders: data.order, name: data.name,hotel_id: data._id});
+			});
+		});
+	});
+
+	//get order status
+	app.get('/status/',bodyParser,function(req,res){
+		Hotel.findOne({_id: req.body.hotel_id}).then(function(data){
+			each(data.order, function(el, next) {
+			  	var obj = MidOrder(el);
+				if (obj._id == req.body.order_id){
+					res.json(obj.status);
+				}	
+			}, function (err) {
+				  console.log('finished');
+			});
+		});
+	});
+
+	//post order
 	app.post('/order',bodyParser,function(req,res){
 		var request = req.body;
 		var da = [];
 		each(request, function(el, next) {
-			
 		  var obj = MidOrder(el);
 			Hotel.findOne({_id: obj.hotel_id}).then(function(result){
 				var arr = result.order;
@@ -72,10 +91,7 @@ module.exports = function(app){
 		res.render('hotel');
 	});
 
-	app.get('/user',function(req,res){
-		res.render('user');
-	});
-
+	//get hotel list
 	app.get('/hotel',function(req,res){
 		Hotel.find({}, function(err,data){
 			if (err) throw err;
@@ -83,20 +99,21 @@ module.exports = function(app){
 		});
 	});
 
-	app.get('/hotel/menu/:id',function(req,res){
-		console.log(req.params.id);
-		Hotel.findOne({_id: req.params.id}).then(function(data){
+	//get menu
+	app.get('/hotel/menu',bodyParser,function(req,res){
+		Hotel.findOne({_id: req.body.hotel_id}).then(function(data){
 			res.json(data.menu);
 		});
 	});
 
+	//get hotel order 
 	app.get('/hotel/order/:id',function(req,res){
-		console.log(req.params.id);
-		Hotel.findOne({_id: req.params.id}).then(function(data){
-			res.json(data.order);
+        Hotel.findOne({_id: req.params.id}).then(function(data){
+			res.render('order',{orders: data.order, name: data.name, hotel_id: data._id});
 		});
 	});
 
+	//post new hotel
 	app.post('/hotel',bodyParser,function(req,res){
 		console.log(Hotel(req.body));
 		var newHotel = Hotel(req.body).save(function(err,data){

@@ -1,15 +1,69 @@
+
 body{
-    background: #0d1521;
-    font-family: tahoma;
-    color: #989898;
+    background: #171616;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#heading{
+    position: relative;
+    padding-left: 20px;
+    padding-top: 20px;
+    float: left;
+    font-size: 20px;
+    color: #0CD1E8
+}
+
+p{
+    padding-right: 20px;
+    padding-top: 20px;
+    float: right;
+    font-size: 15px;
+    color: #ffffff
 }
 
 #food-table{
     position: relative;
-    width: 95%;
-    background: #090d13;
-    margin: 0 auto;
+    background: #0D0E0E;
+    margin: 10px;
+    border-radius: 16px;
     padding: 20px;
+    box-sizing: border-box;
+}
+
+#food-table-red{
+    position: relative;
+    background: #49020A;
+    margin: 10px;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#food-table-green{
+    position: relative;
+    background: #02490D;
+    margin: 10px;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#food-table-grey{
+    position: relative;
+    background: #23282e;
+    margin: 10px;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#item-table{
+    position: relative;
+    border-radius: 16px;
+    background: #000000;
+    margin: 5px;
+    padding: 10px;
     box-sizing: border-box;
 }
 
@@ -27,19 +81,39 @@ input[type="text"]{
     border: 0;
     float: left;
     font-size: 20px;
-    color: #989898;
 }
 
-button{
-    padding: 20px;
-    width: 30%;
-    float: left;
-    background: #23282e;
-    border: 0;
-    box-sizing: border-box;
+#cancel-button{
+    padding: 8px;
+    float: right;
+    margin-right: 10px;
+    border: 0px;
+    background: #49020A;
+    border-radius: 8px;
     color: #fff;
-    cursor: pointer;
-    font-size: 20px;
+    font-size: 10px;
+}
+
+#accept-button{
+    padding: 8px;
+    float: right;
+    margin-right: 10px;
+    border: 0px;
+    background: #02490D;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 10px;
+}
+
+#pickup-button{
+    padding: 8px;
+    float: right;
+    margin-right: 10px;
+    border: 0px;
+    background: #23282e;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 10px;
 }
 
 ul{
@@ -50,17 +124,15 @@ ul{
 
 li{
     width: 100%;
-    padding: 20px;
+    padding: 5px;
     box-sizing: border-box;
-    font-family: arial;
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
     letter-spacing: 1px;
 }
 
-li:hover{
-    text-decoration: line-through;
-    background: rgba(0,0,0,0.2);
-}
+/*#food-table:hover{
+    background: #49020A;
+}*/
 
 

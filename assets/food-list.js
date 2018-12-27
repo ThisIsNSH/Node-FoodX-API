@@ -27,25 +27,25 @@ $(document).ready(function(){
   });
 
 
-  $('#user').on('submit', function(){
-
-        var name = $('#name');
-        var address = $('#address');
-        var mobile = $('#mobile');
-        
-        var user =  {name: name.val(), address: address.val(), mobile: mobile.val()};
-
-        $.ajax({
-          type: 'POST',
-          url: '/hotel',
-          data: hotel,
-          success: function(data){
+  $("#cancel-button").click(function(e) {
+    e.preventDefault();
+    
+    $.ajax({
+        type: "POST",
+        url: "/status",
+        data: { 
+            hotel_id : hotel_id,
+            order_id : "5c24c98d2847260461d01ab0",
+            status : "Cancelled"
+        },
+        success: function(result) {
             location.reload();
-          }
-        });
+        },
+        error: function(result) {
+            alert('error');
+        }
+    });
 
-        return false;
-
-    });  
+  }); 
 
 });
