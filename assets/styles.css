@@ -75,12 +75,14 @@ p{
 }
 
 input[type="text"]{
-    width: 70%;
-    padding: 20px;
+    width: 100%;
+    padding: 10px;
     background:#181c22;
     border: 0;
     float: left;
-    font-size: 20px;
+    color: #ffffff;
+    border-radius: 16px;
+    font-size: 15px;
 }
 
 .cancel-button{
