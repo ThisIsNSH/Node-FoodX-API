@@ -10,12 +10,12 @@
 		<h1 id="heading" hotel-id="<%= hotel_id%>">FoodX dashboard:  <%= name %></h1>
 		<p><%= hotel_id%></p>
 		<br><br><br><br>
-			<% for (var i = 0; i < orders.length; i++){ %>
+			<% for (var i = orders.length-1 ; i >= 0 ; i--){ %>
 						<% if (orders[i].status == "Cancelled") {%>
 							<div id="food-table-red">
-								<button id="cancel-button" order-id='<%= orders[i]._id%>'>Cancel</button>
-								<button id="accept-button" order-id='<%= orders[i]._id%>'>Accept</button>
-								<button id="pickup-button" order-id='<%= orders[i]._id%>'>Ready for Pickup</button>
+								<button class="cancel-button" data-fpid='<%= orders[i]._id%>'>Cancel</button>
+								<button class="accept-button" data-fpid='<%= orders[i]._id%>'>Accept</button>
+								<button class="pickup-button" data-fpid='<%= orders[i]._id%>'>Ready for Pickup</button>
 
 								<ul>
 									<li>Name: <%= orders[i].name %>		|		Mobile: <%= orders[i].mobile %></li>
@@ -34,9 +34,9 @@
 							</div>
 						<%} else if (orders[i].status == "Confirmed"){%>
 							<div id="food-table-green">
-								<button id="cancel-button" order-id='<%= orders[i]._id%>'>Cancel</button>
-								<button id="accept-button" order-id='<%= orders[i]._id%>'>Accept</button>
-								<button id="pickup-button" order-id='<%= orders[i]._id%>'>Ready for Pickup</button>
+								<button class="cancel-button" data-fpid='<%= orders[i]._id%>'>Cancel</button>
+								<button class="accept-button" data-fpid='<%= orders[i]._id%>'>Accept</button>
+								<button class="pickup-button" data-fpid='<%= orders[i]._id%>'>Ready for Pickup</button>
 
 								<ul>
 									<li>Name: <%= orders[i].name %>		|		Mobile: <%= orders[i].mobile %></li>
@@ -55,9 +55,9 @@
 							</div>
 						<%} else if (orders[i].status == "Out for Delivery"){%>
 							<div id="food-table-grey">
-								<button id="cancel-button" order-id='<%= orders[i]._id%>'>Cancel</button>
-								<button id="accept-button" order-id='<%= orders[i]._id%>'>Accept</button>
-								<button id="pickup-button" order-id='<%= orders[i]._id%>'>Ready for Pickup</button>
+								<button class="cancel-button" data-fpid='<%= orders[i]._id%>'>Cancel</button>
+								<button class="accept-button" data-fpid='<%= orders[i]._id%>'>Accept</button>
+								<button class="pickup-button" data-fpid='<%= orders[i]._id%>'>Ready for Pickup</button>
 
 								<ul>
 									<li>Name: <%= orders[i].name %>		|		Mobile: <%= orders[i].mobile %></li>
@@ -76,9 +76,9 @@
 							</div>
 						<%} else {%>
 							<div id="food-table">
-								<button id="cancel-button" order-id='<%= orders[i]._id%>'>Cancel</button>
-								<button id="accept-button" order-id='<%= orders[i]._id%>'>Accept</button>
-								<button id="pickup-button" order-id='<%= orders[i]._id%>'>Ready for Pickup</button>
+								<button class="cancel-button" data-fpid='<%= orders[i]._id%>'>Cancel</button>
+								<button class="accept-button" data-fpid='<%= orders[i]._id%>'>Accept</button>
+								<button class="pickup-button" data-fpid='<%= orders[i]._id%>'>Ready for Pickup</button>
 
 								<ul>
 									<li>Name: <%= orders[i].name %>		|		Mobile: <%= orders[i].mobile %></li>

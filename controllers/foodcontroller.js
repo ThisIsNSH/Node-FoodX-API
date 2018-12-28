@@ -2,7 +2,6 @@ var bodyParser = require('body-parser').json();
 var mongoose = require('mongoose');
 var each = require('async-each-series');
 
-
 var foodSchema = new mongoose.Schema({
 	food_name: String,
 	food_price: String,

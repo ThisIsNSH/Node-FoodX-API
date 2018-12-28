@@ -1,15 +1,14 @@
 $(document).ready(function(){
 
   
-  $('#cancel-button').click(function(e) {
-    alert($('#cancel-button').attr('order-id'));
+  $('.cancel-button').click(function(e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
         url: "/status",
         data: { 
             hotel_id : $('#heading').attr('hotel-id'),
-            order_id : $('#cancel-button').attr('order-id'),
+            order_id : $(this).data("fpid"),
             status : "Cancelled"
         },
         success: function(result) {
@@ -23,14 +22,14 @@ $(document).ready(function(){
   }); 
 
 
-  $('#accept-button').click(function(e) {
+  $('.accept-button').click(function(e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
         url: "/status",
         data: { 
             hotel_id : $('#heading').attr('hotel-id'),
-            order_id : $('#accept-button').attr('order-id'),
+            order_id : $(this).data("fpid"),
             status : "Confirmed"
         },
         success: function(result) {
@@ -43,14 +42,14 @@ $(document).ready(function(){
 
   }); 
 
-  $('#pickup-button').click(function(e) {
+  $('.pickup-button').click(function(e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
         url: "/status",
         data: { 
             hotel_id : $('#heading').attr('hotel-id'),
-            order_id : $('#pickup-button').attr('order-id'),
+            order_id : $(this).data("fpid"),
             status : "Out for Delivery"
         },
         success: function(result) {

@@ -83,7 +83,7 @@ input[type="text"]{
     font-size: 20px;
 }
 
-#cancel-button{
+.cancel-button{
     padding: 8px;
     float: right;
     margin-right: 10px;
@@ -94,7 +94,7 @@ input[type="text"]{
     font-size: 10px;
 }
 
-#accept-button{
+.accept-button{
     padding: 8px;
     float: right;
     margin-right: 10px;
@@ -105,7 +105,7 @@ input[type="text"]{
     font-size: 10px;
 }
 
-#pickup-button{
+.pickup-button{
     padding: 8px;
     float: right;
     margin-right: 10px;
