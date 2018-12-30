@@ -4,6 +4,7 @@ var each = require('async-each-series');
 
 
 var foodSchema = new mongoose.Schema({
+	category: String, 
 	food_name: String,
 	food_price: String,
 	food_image: String
