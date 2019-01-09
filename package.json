@@ -1,16 +1,19 @@
 {
-  "name": "API",
+  "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "APIs, Personal Hotel Dashboard &amp; Online Add Hotel &amp; Item Form for Food Ordering App FOODX",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "test" : "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ThisIsNSH/FoodX-APIs.git"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -23,5 +26,9 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.0"
-  }
+  },
+  "engines": {
+    "node": "10.14.2"
+  },
+  "devDependencies": {}
 }

@@ -59,7 +59,7 @@ p{
 }
 
 #item-table{
-    position: absolute;
+    position: relative;
     border-radius: 16px;
     background: #000000;
     margin: 5px;
