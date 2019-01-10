@@ -103,8 +103,8 @@ module.exports = function(app){
 	});
 
 	//get menu
-	app.get('/hotel/menu',bodyParser,function(req,res){
-		Hotel.findOne({_id: req.body.hotel_id}).then(function(data){
+	app.get('/hotel/menu/:id',bodyParser,function(req,res){
+		Hotel.findOne({_id: req.params.id}).then(function(data){
 			res.json(data.menu);
 		});
 	});
