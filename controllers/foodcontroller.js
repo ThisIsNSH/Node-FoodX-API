@@ -57,17 +57,50 @@ module.exports = function(app){
 	});
 
 	//get order status
-	app.get('/status/',bodyParser,function(req,res){
-		Hotel.findOne({_id: req.body.hotel_id}).then(function(data){
+	app.get('/status/:hotel_id/:order_id',bodyParser,function(req,res){
+			
+// 		// console.log(req.body.hotel_id);
+// 		// console.log(req.body.order_id);
+
+// 		// res.json(Hotel.aggregate([
+// 		// 		    // { $match: {_id: obj.hotel_id}},
+// 		// 		    // { $unwind: '$order'},
+// 		// 		    // { $match: {'order.address': obj.address}},
+// 		// 		    // { $match: {'order.mobile': obj.mobile}},
+// 		// 		    // { $match: {'order.items': obj.items}},
+// 		// 		    { $match: {'order._id': req.params.order_id}},
+// 		// 		    { }
+// 		// 	    ]));
+
+// 		res.json(Hotel.aggregate([
+//   {  
+//     $project: {
+//       result: {
+//         $filter: {
+//           input: "$result", 
+//           as:"item", 
+//           cond: { $eq: ["order._id", req.params.order_id]}
+//         }
+//       }
+//     }
+//   }
+// ]));
+
+		Hotel.findOne({_id: req.params.hotel_id}).then(function(data){
 			each(data.order, function(el, next) {
 			  	var obj = MidOrder(el);
-				if (obj._id == req.body.order_id){
+			  	console.log(el);
+				if (obj._id == req.params.order_id){
 					res.json(obj.status);
 				}	
+				next();
+
 			}, function (err) {
 				  console.log('finished');
 			});
 		});
+
+
 	});
 
 	//post order
@@ -76,18 +109,45 @@ module.exports = function(app){
 		var da = [];
 		each(request, function(el, next) {
 		  var obj = MidOrder(el);
+
 			Hotel.findOne({_id: obj.hotel_id}).then(function(result){
 				var arr = result.order;
 				arr.push(MidOrder(obj));
+				
 				Hotel.findOneAndUpdate({_id: obj.hotel_id},{$set:{order:arr}}, {new: true}).then(function(data){
-					da.push(data);
+				
+					// Hotel.findOne({_id: obj.hotel_id},{'order.$.items': { $elemMatch: { 'slug': 'video-2'} } }).then(function(result1)}{
+					// 	da.push(result1);
+					// });
+
+
+
+				da.push(Hotel.aggregate([
+				    // { $match: {_id: obj.hotel_id}},
+				    // { $unwind: '$order'},
+				    // { $match: {'order.address': obj.address}},
+				    // { $match: {'order.mobile': obj.mobile}},
+				    // { $match: {'order.items': obj.items}},
+				    { $match: {'order': obj}}
+			    ]));
+
+
+    // da.push(data.order.aggregate([
+    //                  { $match: { items: obj.items } },
+    //                  { $group: { _id: "$_id" } },
+    //                  // { $sort: { total: -1 } }
+    //                ]));
+
+
+
 					next();
 				});
 			});
 		}, function (err) {
-				res.json(da);
-		  console.log('finished');
+			res.json(da);
+			console.log('finished');
 		});
+
 	});
 
 	app.get('/',function(req,res){
