@@ -1,12 +1,15 @@
+setInterval(function(){
+location.reload();
+},3000);
 $(document).ready(function(){
 
-  
+
   $('.cancel-button').click(function(e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
         url: "/status",
-        data: { 
+        data: {
             hotel_id : $('#heading').attr('hotel-id'),
             order_id : $(this).data("fpid"),
             status : "Cancelled"
@@ -19,7 +22,7 @@ $(document).ready(function(){
         }
     });
 
-  }); 
+  });
 
 
   $('.accept-button').click(function(e) {
@@ -27,7 +30,7 @@ $(document).ready(function(){
     $.ajax({
         type: "POST",
         url: "/status",
-        data: { 
+        data: {
             hotel_id : $('#heading').attr('hotel-id'),
             order_id : $(this).data("fpid"),
             status : "Confirmed"
@@ -40,14 +43,14 @@ $(document).ready(function(){
         }
     });
 
-  }); 
+  });
 
   $('.pickup-button').click(function(e) {
     e.preventDefault();
     $.ajax({
         type: "POST",
         url: "/status",
-        data: { 
+        data: {
             hotel_id : $('#heading').attr('hotel-id'),
             order_id : $(this).data("fpid"),
             status : "Out for Delivery"
@@ -60,6 +63,6 @@ $(document).ready(function(){
         }
     });
 
-  }); 
+  });
 
 });
