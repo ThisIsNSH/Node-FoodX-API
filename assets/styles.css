@@ -33,7 +33,7 @@ p{
 
 #food-table-red{
     position: relative;
-    background: #49020A;
+    background: #F30808;
     margin: 10px;
     border-radius: 16px;
     padding: 20px;
@@ -42,7 +42,7 @@ p{
 
 #food-table-green{
     position: relative;
-    background: #02490D;
+    background: #2ECC71;
     margin: 10px;
     border-radius: 16px;
     padding: 20px;
@@ -51,7 +51,7 @@ p{
 
 #food-table-grey{
     position: relative;
-    background: #23282e;
+    background: #F1C40F;
     margin: 10px;
     border-radius: 16px;
     padding: 20px;
@@ -90,7 +90,7 @@ input[type="text"]{
     float: right;
     margin-right: 10px;
     border: 0px;
-    background: #49020A;
+    background: #F30808;
     border-radius: 8px;
     color: #fff;
     font-size: 10px;
@@ -101,7 +101,7 @@ input[type="text"]{
     float: right;
     margin-right: 10px;
     border: 0px;
-    background: #02490D;
+    background: #2ECC71;
     border-radius: 8px;
     color: #fff;
     font-size: 10px;
@@ -112,7 +112,7 @@ input[type="text"]{
     float: right;
     margin-right: 10px;
     border: 0px;
-    background: #23282e;
+    background: #F1C40F;
     border-radius: 8px;
     color: #fff;
     font-size: 10px;

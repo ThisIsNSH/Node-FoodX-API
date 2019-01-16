@@ -20,16 +20,20 @@
 								<ul>
 									<li>Name: <%= orders[i].name %>		|		Mobile: <%= orders[i].mobile %></li>
 									<li>Address: <%= orders[i].address %></li>
-									<li><%= orders[i]._id%></li>
+									<li>Order Id: <%= orders[i]._id%></li>
 									<br>
+									<% var sum=0; %>
 									<% for (var j = 0; j < orders[i].items.length; j++){ %>
+										<% sum+= parseInt(orders[i].items[j].extra) %>
 										<div id="item-table">
 											<ul id="item-ul">
 												<li>Item Name: <%= orders[i].items[j].name %>		|		Quantity: <%= orders[i].items[j].quantity %></li>
-												<li>Extra: <%= orders[i].items[j].extra %></li>
+												<li>Price: <%= orders[i].items[j].extra %></li>
 											</ul>
 										</div>		
 									<% } %>	
+									<br>
+									<li>Total: <%= sum %></li>
 								</ul>
 							</div>
 						<%} else if (orders[i].status == "Confirmed"){%>
@@ -43,14 +47,18 @@
 									<li>Address: <%= orders[i].address %></li>
 									<li><%= orders[i]._id%></li>
 									<br>
+									<% var sum=0; %>
 									<% for (var j = 0; j < orders[i].items.length; j++){ %>
+										<% sum+= parseInt(orders[i].items[j].extra) %>
 										<div id="item-table">
 											<ul id="item-ul">
 												<li>Item Name: <%= orders[i].items[j].name %>		|		Quantity: <%= orders[i].items[j].quantity %></li>
-												<li>Extra: <%= orders[i].items[j].extra %></li>
+												<li>Price: <%= orders[i].items[j].extra %></li>
 											</ul>
 										</div>		
 									<% } %>	
+									<br>
+									<li>Total: <%= sum %></li>
 								</ul>
 							</div>
 						<%} else if (orders[i].status == "Out for Delivery"){%>
@@ -64,14 +72,18 @@
 									<li>Address: <%= orders[i].address %></li>
 									<li><%= orders[i]._id%></li>
 									<br>
+									<% var sum=0; %>
 									<% for (var j = 0; j < orders[i].items.length; j++){ %>
+										<% sum+= parseInt(orders[i].items[j].extra) %>
 										<div id="item-table">
 											<ul id="item-ul">
 												<li>Item Name: <%= orders[i].items[j].name %>		|		Quantity: <%= orders[i].items[j].quantity %></li>
-												<li>Extra: <%= orders[i].items[j].extra %></li>
+												<li>Price: <%= orders[i].items[j].extra %></li>
 											</ul>
 										</div>		
 									<% } %>	
+									<br>
+									<li>Total: <%= sum %></li>
 								</ul>
 							</div>
 						<%} else {%>
@@ -85,14 +97,18 @@
 									<li>Address: <%= orders[i].address %></li>
 									<li><%= orders[i]._id%></li>
 									<br>
+									<% var sum=0; %>
 									<% for (var j = 0; j < orders[i].items.length; j++){ %>
+										<% sum+= parseInt(orders[i].items[j].extra) %>
 										<div id="item-table">
 											<ul id="item-ul">
 												<li>Item Name: <%= orders[i].items[j].name %>		|		Quantity: <%= orders[i].items[j].quantity %></li>
-												<li>Extra: <%= orders[i].items[j].extra %></li>
+												<li>Price: <%= orders[i].items[j].extra %></li>
 											</ul>
 										</div>		
 									<% } %>	
+									<br>
+									<li>Total: <%= sum %></li>
 								</ul>
 							</div>
 						<% } %>

@@ -58,33 +58,6 @@ module.exports = function(app){
 
 	//get order status
 	app.get('/status/:hotel_id/:order_id',bodyParser,function(req,res){
-			
-// 		// console.log(req.body.hotel_id);
-// 		// console.log(req.body.order_id);
-
-// 		// res.json(Hotel.aggregate([
-// 		// 		    // { $match: {_id: obj.hotel_id}},
-// 		// 		    // { $unwind: '$order'},
-// 		// 		    // { $match: {'order.address': obj.address}},
-// 		// 		    // { $match: {'order.mobile': obj.mobile}},
-// 		// 		    // { $match: {'order.items': obj.items}},
-// 		// 		    { $match: {'order._id': req.params.order_id}},
-// 		// 		    { }
-// 		// 	    ]));
-
-// 		res.json(Hotel.aggregate([
-//   {  
-//     $project: {
-//       result: {
-//         $filter: {
-//           input: "$result", 
-//           as:"item", 
-//           cond: { $eq: ["order._id", req.params.order_id]}
-//         }
-//       }
-//     }
-//   }
-// ]));
 
 		Hotel.findOne({_id: req.params.hotel_id}).then(function(data){
 			each(data.order, function(el, next) {
@@ -94,13 +67,10 @@ module.exports = function(app){
 					res.json(obj.status);
 				}	
 				next();
-
 			}, function (err) {
 				  console.log('finished');
 			});
 		});
-
-
 	});
 
 	//post order
@@ -109,37 +79,13 @@ module.exports = function(app){
 		var da = [];
 		each(request, function(el, next) {
 		  var obj = MidOrder(el);
-
 			Hotel.findOne({_id: obj.hotel_id}).then(function(result){
 				var arr = result.order;
 				arr.push(MidOrder(obj));
-				
 				Hotel.findOneAndUpdate({_id: obj.hotel_id},{$set:{order:arr}}, {new: true}).then(function(data){
-				
-					// Hotel.findOne({_id: obj.hotel_id},{'order.$.items': { $elemMatch: { 'slug': 'video-2'} } }).then(function(result1)}{
-					// 	da.push(result1);
-					// });
-
-
-
 				da.push(Hotel.aggregate([
-				    // { $match: {_id: obj.hotel_id}},
-				    // { $unwind: '$order'},
-				    // { $match: {'order.address': obj.address}},
-				    // { $match: {'order.mobile': obj.mobile}},
-				    // { $match: {'order.items': obj.items}},
 				    { $match: {'order': obj}}
 			    ]));
-
-
-    // da.push(data.order.aggregate([
-    //                  { $match: { items: obj.items } },
-    //                  { $group: { _id: "$_id" } },
-    //                  // { $sort: { total: -1 } }
-    //                ]));
-
-
-
 					next();
 				});
 			});
@@ -150,12 +96,12 @@ module.exports = function(app){
 
 	});
 
-	app.get('/',function(req,res){
+	app.get('/c2FpYmFiYQ',function(req,res){
 		res.render('hotel');
 	});
 
 	//get hotel list
-	app.get('/hotel',function(req,res){
+	app.get('/hotel/Z2FuZXNo',function(req,res){
 		Hotel.find({}, function(err,data){
 			if (err) throw err;
 			res.json(data);
