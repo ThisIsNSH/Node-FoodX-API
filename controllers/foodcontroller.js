@@ -102,11 +102,21 @@ module.exports = function(app){
 
 	//get hotel list
 	app.get('/hotel/Z2FuZXNo',function(req,res){
-		Hotel.find({}, function(err,data){
+
+		// Hotel.find({}).sort('-name').exec(function(err, data) { 
+			// if (err) throw err;
+				// res.json(data);
+		// 
+		// });
+
+
+		Hotel.find({}, null, {sort: {image: 1}},function(err,data){
 			if (err) throw err;
 			res.json(data);
 		});
 	});
+
+//5c41b24b9edfc00017f2d821
 
 	//get menu
 	app.get('/hotel/menu/:id',bodyParser,function(req,res){
