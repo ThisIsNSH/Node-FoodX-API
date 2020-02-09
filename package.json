@@ -28,7 +28,7 @@
     "mongoose": "^5.4.0"
   },
   "engines": {
-    "node": "10.15.0"
+    "node": "10.19.0"
   },
   "devDependencies": {}
 }
