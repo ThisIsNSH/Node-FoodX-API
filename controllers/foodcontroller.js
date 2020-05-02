@@ -2,7 +2,7 @@ var bodyParser = require('body-parser').json();
 var mongoose = require('mongoose');
 var each = require('async-each-series');
 
-mongoose.connect('mongodb://test:test123!@ds115753.mlab.com:15753/foodxdb',{useNewUrlParser: true})
+mongoose.connect('mongodb://nishant:nishant123@ds333248.mlab.com:33248/kota',{useNewUrlParser: true})
 
 
 var foodSchema = new mongoose.Schema({
