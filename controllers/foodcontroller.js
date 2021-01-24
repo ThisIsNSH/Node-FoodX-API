@@ -2,7 +2,7 @@ var bodyParser = require('body-parser').json();
 var mongoose = require('mongoose');
 var each = require('async-each-series');
 
-mongoose.connect('mongodb://nishant:nishant123@ds333248.mlab.com:33248/kota',{useNewUrlParser: true})
+mongoose.connect('ADD YOUR MLAB DATABASE LINK HERE',{useNewUrlParser: true})
 
 
 var foodSchema = new mongoose.Schema({
